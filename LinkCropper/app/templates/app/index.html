@@ -1,0 +1,53 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<div class="container-md mb-4">
+    <h2>Anonymous reddirect</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum, ex et dapibus lacinia, eros orci auctor turpis, non auctor sem nulla eu arcu. Quisque quis lorem viverra libero eleifend lacinia a sit amet ligula. Morbi vehicula nisi egestas ornare luctus. Donec interdum risus nec lorem ultricies, ultrices auctor erat maximus. Donec sit amet orci nibh. Integer auctor sapien erat, sed porttitor nibh cursus sed.</p>
+    <form action="{% url 'create' %}" method="post" >
+        {% csrf_token %}
+        <div class="input-group mb-3 ">
+          <span class="input-group-text" id="basic-addon3">Url</span>
+          {{ form.url }}
+        </div>
+        <button type="submit" class="btn btn-outline-dark mt-3 w-25">Crop link</button>
+    </form>
+</div>
+
+{% if user.is_authenticated %}
+<div class="container-md mb-4">
+    <h2>Named reddirect</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum, ex et dapibus lacinia, eros orci auctor turpis, non auctor sem nulla eu arcu. Quisque quis lorem viverra libero eleifend lacinia a sit amet ligula. Morbi vehicula nisi egestas ornare luctus. Donec interdum risus nec lorem ultricies, ultrices auctor erat maximus. Donec sit amet orci nibh. Integer auctor sapien erat, sed porttitor nibh cursus sed.</p>
+    <form action="{% url 'createname' %}" method="post" >
+        {% csrf_token %}
+        <div class="input-group mb-3 ">
+          <span class="input-group-text" id="basic-addon3">{{hostname}}/r/</span>
+          {{ userForm.name }}
+        </div>
+        <div class="input-group mb-3 ">
+          <span class="input-group-text" id="basic-addon3">Url</span>
+          {{ userForm.url }}
+        </div>
+        <button type="submit" class="btn btn-outline-dark mt-3 w-25">Crop link</button>
+    </form>
+</div>     
+
+<div class="container-md mb-4">
+    <h2>User link List</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum, ex et dapibus lacinia, eros orci auctor turpis, non auctor sem nulla eu arcu. Quisque quis lorem viverra libero eleifend lacinia a sit amet ligula. Morbi vehicula nisi egestas ornare luctus. Donec interdum risus nec lorem ultricies, ultrices auctor erat maximus. Donec sit amet orci nibh. Integer auctor sapien erat, sed porttitor nibh cursus sed.</p>
+    <ul class="list-group">
+        {% for link in userlist %}
+        <li class="list-group-item"> 
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">{{hostname}}/r/{{ link.name }}</div>
+                    {{ link.url }}
+            </div>
+        </li>
+        {% empty %}
+            <div class="fw-bold">Sorry, user links not found</div>
+        {% endfor %}
+    </ul>
+</div>    
+{% endif %}
+
+{% endblock %}

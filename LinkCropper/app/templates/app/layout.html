@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Link Cropper</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">Link Cropper</a>
+            <ul class="nav flex-fill">
+                <li class="nav-item" >
+                    <a class="nav-link link-light" href="{% url 'home' %}">Home</a>
+                </li>
+            </ul>
+            
+            {% include 'app/loginpartial.html' %}
+            
+        </div>
+    </nav>
+
+    <div class="container body-content mt-3">
+        <div class="container-md">
+            <h1>Link Cropper</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum, ex et dapibus lacinia, eros orci auctor turpis, non auctor sem nulla eu arcu. Quisque quis lorem viverra libero eleifend lacinia a sit amet ligula. Morbi vehicula nisi egestas ornare luctus. Donec interdum risus nec lorem ultricies, ultrices auctor erat maximus. Donec sit amet orci nibh. Integer auctor sapien erat, sed porttitor nibh cursus sed.</p>
+        </div>
+        <hr/>
+        {% block content %}{% endblock %}
+        <hr/>
+        <footer>
+            <p>&copy; 2022 - Link Cropper</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+{% block scripts %}{% endblock %}
+
+</body>
+</html>
