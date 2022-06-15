@@ -1,0 +1,47 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}</h2>
+<div class="row">
+    <div class="col-md-8 w-75">
+        <form method="post" action="." class="col-md-8 w-100">
+          {% csrf_token %}
+          <h4>Use to registration a local account.</h4>
+            <hr/>
+            <div class="d-inline-flex w-100">
+                <div class="w-50">
+                    <div class="input-group mb-3">
+                        {{ form.username }}
+                    </div>
+                    <div class="input-group mb-3">
+                        {{ form.email }}
+                    </div>
+                    <div class="input-group mb-3">
+                        {{ form.password1 }}
+                    </div>
+                    <div class="input-group mb-3">
+                        {{ form.password2 }}
+                    </div>
+                </div>
+                <ul class="list-group w-75">
+                    <li class="list-group-item list-group-item-warning mb-3">Your password can't be too similar to your other personal information.</li>
+                    <li class="list-group-item list-group-item-warning mb-3">Your password must contain at least 8 characters.</li>
+                    <li class="list-group-item list-group-item-warning mb-3">Your password can't be a commonly used password.</li>
+                    <li class="list-group-item list-group-item-warning mb-3">Your password can't be entirely numeric.</li>
+                </ul>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-10">
+                    <input type="hidden" name="next" value="/" />
+                    <input type="submit" value="Registration" class="btn btn-outline-dark w-50" />
+                </div>
+            </div>
+            {% if form.errors %}
+            <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+            {% endif %}            
+        </form>
+    </div>
+</div>
+{% endblock %}
